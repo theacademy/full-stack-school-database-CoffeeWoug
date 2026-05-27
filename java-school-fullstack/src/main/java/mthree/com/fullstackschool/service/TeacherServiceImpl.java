@@ -1,6 +1,7 @@
 package mthree.com.fullstackschool.service;
 
 import mthree.com.fullstackschool.dao.TeacherDao;
+import mthree.com.fullstackschool.dao.TeacherDaoImpl;
 import mthree.com.fullstackschool.model.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,24 +12,24 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherServiceInterface {
 
     //YOUR CODE STARTS HERE
+    private final TeacherDao teacherDao;
 
+    @Autowired
+    public TeacherServiceImpl(TeacherDao teacherDao) {
+        this.teacherDao = teacherDao;
+    }
 
     //YOUR CODE ENDS HERE
 
     public List<Teacher> getAllTeachers() {
         //YOUR CODE STARTS HERE
-
-        return null;
-
+        return teacherDao.getAllTeachers();
         //YOUR CODE ENDS HERE
     }
 
     public Teacher getTeacherById(int id) {
         //YOUR CODE STARTS HERE
-
-
-            return null;
-
+        return teacherDao.findTeacherById(id);
         //YOUR CODE ENDS HERE
     }
 

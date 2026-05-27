@@ -79,18 +79,17 @@ public class CourseDaoImpl implements CourseDao {
     @Override
     public void deleteCourse(int id) {
         //YOUR CODE STARTS HERE
-        final String DELETE_COURSE_STUDENT = "DELETE FROM course_student WHERE course_id = ?";
-        jdbcTemplate.update(DELETE_COURSE_STUDENT, id);
+        deleteAllStudentsFromCourse(id);
 
         final String DELETE_COURSE = "DELETE FROM course WHERE cid = ?";
         jdbcTemplate.update(DELETE_COURSE, id);
         //YOUR CODE ENDS HERE
     }
 
-    // Not sure about this one
     @Override
     public void deleteAllStudentsFromCourse(int courseId) {
         //YOUR CODE STARTS HERE
+
         String testSQl1 = "SELECT COUNT(course_id) FROM course_student WHERE course_id = ?";
         int count1 = jdbcTemplate.queryForObject(testSQl1, Integer.class, courseId);
         System.out.println(count1 + " Current rows left");
@@ -101,7 +100,6 @@ public class CourseDaoImpl implements CourseDao {
         String testSQl2 = "SELECT COUNT(course_id) FROM course_student WHERE course_id = ?";
         int count2 = jdbcTemplate.queryForObject(testSQl2, Integer.class, courseId);
         System.out.println(count2 + " rows left");
-
         //YOUR CODE ENDS HERE
     }
 

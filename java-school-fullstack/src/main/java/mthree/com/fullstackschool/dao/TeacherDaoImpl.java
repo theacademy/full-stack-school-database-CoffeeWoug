@@ -2,6 +2,7 @@ package mthree.com.fullstackschool.dao;
 
 import mthree.com.fullstackschool.dao.mappers.TeacherMapper;
 import mthree.com.fullstackschool.model.Teacher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,7 @@ public class TeacherDaoImpl implements TeacherDao {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public TeacherDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -31,8 +33,8 @@ public class TeacherDaoImpl implements TeacherDao {
     @Override
     public List<Teacher> getAllTeachers() {
         //YOUR CODE STARTS HERE
-
-        return null;
+        List<Teacher> teachers = jdbcTemplate.query("SELECT * FROM teacher", new TeacherMapper());
+        return teachers;
 
         //YOUR CODE ENDS HERE
     }

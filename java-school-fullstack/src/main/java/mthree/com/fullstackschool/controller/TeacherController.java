@@ -17,9 +17,7 @@ public class TeacherController {
     @GetMapping("/teachers")
     public List<Teacher> getAllTeachers() {
         //YOUR CODE STARTS HERE
-
-        return null;
-
+        return teacherServiceImpl.getAllTeachers();
         //YOUR CODE ENDS HERE
     }
 

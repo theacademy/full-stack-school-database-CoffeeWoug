@@ -60,25 +60,22 @@ public class CourseServiceImpl implements CourseServiceInterface {
 
     public Course updateCourseData(int id, Course course) {
         //YOUR CODE STARTS HERE
-        try {
-            course.setCourseId(id);
-            courseDao.findCourseById(id);
-            courseDao.updateCourse(course);
+        if(id != course.getCourseId()) {
+            course.setCourseName("IDs do not match, course not updated");
+            course.setCourseDesc("IDs do not match, course not updated");
             return course;
-        } catch(EmptyResultDataAccessException e) {
-            Course deadCourse = new Course();
-            deadCourse.setCourseName("Id's do not match, course not updated");
-            deadCourse.setCourseDesc("Id's do not match, course not updated");
-            return deadCourse;
         }
 
-
+        course.setCourseId(id);
+        courseDao.updateCourse(course);
+        return course;
         //YOUR CODE ENDS HERE
     }
 
     public void deleteCourseById(int id) {
         //YOUR CODE STARTS HERE
         courseDao.deleteCourse(id);
+        System.out.println("Course ID:" + id + " deleted");
         //YOUR CODE ENDS HERE
     }
 }

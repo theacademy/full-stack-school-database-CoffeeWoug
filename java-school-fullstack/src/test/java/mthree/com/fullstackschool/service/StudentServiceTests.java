@@ -57,7 +57,7 @@ public class StudentServiceTests {
         student.setStudentId(100);
         student.setStudentFirstName("Updated Student First Name");
         student.setStudentLastName("Updated Student Last Name");
-
+        // Why did this test not work with my own student object is bloody stupid
         Student upStudent = studentService.updateStudentData(99, student);
         assertEquals("IDs do not match, student not updated", student.getStudentFirstName());
         assertEquals("IDs do not match, student not updated", student.getStudentLastName());
@@ -66,6 +66,7 @@ public class StudentServiceTests {
     @Test
     @DisplayName("Student Add Service Test")
     public void studentAddServiceTest() {
+
         Student student = new Student();
         student.setStudentFirstName("New Student First Name");
         student.setStudentLastName("New Student Last Name");
