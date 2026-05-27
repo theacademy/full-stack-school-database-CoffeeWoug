@@ -25,6 +25,8 @@ public class StudentDaoImpl implements StudentDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    // Final version
+
     @Override
     @Transactional
     public Student createNewStudent(Student student) {
@@ -97,16 +99,8 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public void deleteStudentFromCourse(int studentId, int courseId) {
         //YOUR CODE STARTS HERE
-        String testSQl1 = "SELECT COUNT(student_id) FROM course_student WHERE student_id = ?";
-        int count1 = jdbcTemplate.queryForObject(testSQl1, Integer.class, studentId);
-        System.out.println(count1 + " Current rows left");
-
         final String DELETE_STUDENT_FROM_COURSE = "DELETE FROM course_student WHERE student_id = ? AND course_id = ?;";
         jdbcTemplate.update(DELETE_STUDENT_FROM_COURSE, studentId, courseId);
-
-        String testSQl2 = "SELECT COUNT(student_id) FROM course_student WHERE student_id = ?";
-        int count2 = jdbcTemplate.queryForObject(testSQl2, Integer.class, studentId);
-        System.out.println(count2 + " rows left");
         //YOUR CODE ENDS HERE
     }
 }
