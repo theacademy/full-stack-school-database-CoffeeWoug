@@ -35,27 +35,36 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
 
     public Teacher addNewTeacher(Teacher teacher) {
         //YOUR CODE STARTS HERE
-
-
-        return null;
-
+        boolean valid = true;
+        if(teacher.getTeacherFName().isEmpty() || teacher.getTeacherFName().trim().isEmpty()) {
+            teacher.setTeacherFName("First Name blank, teacher NOT added");
+            valid = false;
+        } if(teacher.getTeacherLName().isEmpty() || teacher.getTeacherLName().trim().isEmpty()) {
+            teacher.setTeacherLName("Last Name blank, teacher NOT added");
+            valid = false;
+        }
+        if(!valid) return teacher;
+        return teacherDao.createNewTeacher(teacher);
         //YOUR CODE ENDS HERE
     }
 
     public Teacher updateTeacherData(int id, Teacher teacher) {
         //YOUR CODE STARTS HERE
+        if(id != teacher.getTeacherId()) {
+            teacher.setTeacherFName("IDs do not match, teacher not updated");
+            teacher.setTeacherLName("IDs do not match, teacher not updated");
+            return teacher;
+        }
 
-
-        return null;
-
+        teacher.setTeacherId(id);
+        teacherDao.updateTeacher(teacher);
+        return teacher;
         //YOUR CODE ENDS HERE
     }
 
     public void deleteTeacherById(int id) {
         //YOUR CODE STARTS HERE
-
-
-
+        teacherDao.deleteTeacher(id);
         //YOUR CODE ENDS HERE
     }
 }
